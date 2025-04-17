@@ -1,0 +1,54 @@
+"use client";
+import { AlignRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { ModeToggle } from "@/components/themeToggle";
+import { showPost } from "@/app/redux/PostSlice";
+import Link from "next/link";
+import Searchitem from "./Searchitem";
+
+const Header = ({ show, setShow }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.entity);
+
+  return (
+    <div className="p-4 bg-gray-100 dark:bg-black flex justify-between items-center w-full">
+      {/* Logo or Left Side Placeholder */}
+      <div className="text-xl font-bold text-gray-800 dark:text-white">
+        MyBlog
+      </div>
+
+      {/* Right Side: Search + Buttons */}
+      <div className="flex items-center gap-4">
+        {/* Search Bar */}
+        <Searchitem />
+
+        {/* Post or Login */}
+        {user && user?.data ? (
+          <Button onClick={() => dispatch(showPost())} variant="default">
+            POST
+          </Button>
+        ) : (
+          <Button variant="default">
+            <Link href="/signup">Login</Link>
+          </Button>
+        )}
+
+        {/* Theme Toggle */}
+        <ModeToggle />
+
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden">
+          <button
+            className="dark:bg-gray-900 bg-white rounded-md p-1 shadow-md"
+            onClick={() => setShow(!show)}
+          >
+            <AlignRight />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
