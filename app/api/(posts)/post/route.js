@@ -31,15 +31,22 @@ export const POST = async (req) => {
     });
   }
 };
-export const GET = async (_) => {
+export const GET = async (req) => {
   try {
-    const posts = await prisma.post.findMany({
+    const cid = req.nextUrl.searchParams.get("cid")
+    const query = {
       include: {
         user: {
           select: { name: true, email: true },
         },
       },
-    });
+      where: {}
+    }
+    console.log({ cid })
+    if (cid) {
+      query.where = { categoryId: cid } 
+    }
+    const posts = await prisma.post.findMany(query);
     if (!posts) {
       return NextResponse.json({
         status: 404,

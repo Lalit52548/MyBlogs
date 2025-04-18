@@ -40,6 +40,25 @@ export const getAllPosts = createAsyncThunk(
     }
   }
 );
+
+// Get all posts
+export const getAllPostsofCategory = createAsyncThunk(
+  "post/getAllPostsofCategory",
+  async (cid, thunkAPI) => {
+    try {
+      const response = await axios.get("/api/post?cid=" + cid);
+      if (response.data.status === 200) {
+        return response.data;
+      } else {
+        return thunkAPI.rejectWithValue(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.toString());
+    }
+  }
+);
+
 // get signle post details
 export const getSignlePostDetails = createAsyncThunk(
   "post/getSignlePostDetails",
