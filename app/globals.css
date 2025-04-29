@@ -74,6 +74,23 @@
     @apply bg-background text-foreground;
   }
 }
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar {
+  width: 4px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b2b2b2;
+  border-radius: 12px;
+}
+
+/* Show scrollbar only on hover */
+body:hover ::-webkit-scrollbar {
+  opacity: 1; /* Show scrollbar when hovered */
 }
