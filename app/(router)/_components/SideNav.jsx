@@ -14,6 +14,8 @@ import { useRouter } from "next/navigation";
 import { useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@/components/ui/use-toast";
+// filepath: d:\Blognest\MyBlogs\app\(router)\home\_components\SideNav.js
+import React from "react";
 
 const SideNav = ({ show, setShow }) => {
   const dispatch = useDispatch();
@@ -90,7 +92,7 @@ const SideNav = ({ show, setShow }) => {
           <X />
         </button>
         <Link href={"/home"} className="flex items-center justify-center">
-          <Image src={"/logo.png"} width={150} height={80} alt="logo" />
+          <Image src={"/mainlogo.png"} width={150} height={80} alt="logo" />
         </Link>
         {/* menu list  */}
         <hr className="mt-7" />
