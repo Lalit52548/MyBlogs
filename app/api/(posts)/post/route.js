@@ -1,4 +1,6 @@
 import prisma from "@/DB/db.config";
+import { isValidObjectId } from "@/lib/utils";
+import { Types } from "@prisma/client/runtime/library";
 import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
@@ -31,15 +33,30 @@ export const POST = async (req) => {
     });
   }
 };
-export const GET = async (_) => {
+export const GET = async (req) => {
   try {
-    const posts = await prisma.post.findMany({
+    const { searchParams } = new URL(req.url);
+    const cid = searchParams.get("cid");
+    const filter = {
       include: {
         user: {
           select: { name: true, email: true },
         },
       },
-    });
+    };
+
+    if (cid && cid.length > 0) {
+      // If cid is provided and is a valid ObjectId, filter by categoryId
+      filter.where = {
+        categoryId: cid,
+      };
+
+      if(!isValidObjectId(cid)){
+        throw new Error("Invalid categoryID provided")
+      }
+    }
+
+    const posts = await prisma.post.findMany(filter);
     if (!posts) {
       return NextResponse.json({
         status: 404,

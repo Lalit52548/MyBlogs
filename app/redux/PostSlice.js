@@ -26,9 +26,9 @@ export const createPost = createAsyncThunk(
 // Get all posts
 export const getAllPosts = createAsyncThunk(
   "post/getAllPosts",
-  async (thunkAPI) => {
+  async (data={},thunkAPI) => {
     try {
-      const response = await axios.get("/api/post");
+      const response = await axios.get("/api/post" + (data?.categoryId ? `?cid=${data?.categoryId}` : ""));
       if (response.data.status === 200) {
         return response.data;
       } else {
