@@ -47,7 +47,7 @@ const SideNav = ({ show, setShow }) => {
       id: 3,
       name: "About Us",
       icon: GraduationCap,
-      url: "/home",
+      url: "/about",
       action: () => setShow(!show),
     },
     user && user?.data
@@ -79,7 +79,7 @@ const SideNav = ({ show, setShow }) => {
   return (
     <>
       <div
-        className={`dark:bg-black sm:w-64 fixed top-0    z-[100] p-5 h-screen  bg-gray-100 shadow-sm border transition-all duration-500 ease-in-out transform ${
+        className={`dark:bg-black sm:w-48 fixed top-0    z-[100] p-5 h-screen  bg-gray-100 shadow-sm border transition-all duration-500 ease-in-out transform ${
           show ? "translate-x-0" : "-translate-x-full md:translate-x-0 "
         }`}
       >

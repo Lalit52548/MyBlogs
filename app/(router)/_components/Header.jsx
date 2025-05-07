@@ -26,7 +26,7 @@ const Header = ({ show, setShow }) => {
       />
       <div>
         <h2 className="font-bold text-base md:text-xl lg:text-4xl">
-          Welcome back,{" "}
+          Welcome,{" "}
           <span className="text-indigo-600">{name}</span>!
         </h2>
         <p className="text-sm md:text-base text-gray-500">
