@@ -7,15 +7,18 @@ const Footer = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
         {/* Sections */}
         <div style={{ flex: '1 1 200px', margin: '10px' }}>
-          <h2>Sections</h2>
+          <h2><b><u>SECTION</u></b></h2>
           <ul>
-            <li>Findings</li>
-            <li>Campus & Community</li>
-            <li>Health</li>
-            <li>Science & Tech</li>
-            <li>Nation & World</li>
-            <li>Arts & Culture</li>
-            <li>Work & Economy</li>
+            <li>BUSINESS</li>
+            <li>TECHNOLOGY</li>
+            <li>HISTORY</li>
+            <li>LIFSTYLE</li>
+            <li>HEALTH</li>
+            <li>TRAVEL</li>
+            <li>EDUCATION</li>
+            <li>FOOD</li>
+            <li>FINANCE</li>
+            <li>ART</li>
           </ul>
         </div>
 
@@ -38,11 +41,11 @@ const Footer = () => {
           </h2>
           <div style={{ marginTop: '10px' }}>
             <h3>Wondering</h3>
-            <p>A series of random questions answered by Harvard experts.</p>
+            <p>A series of random questions answered by BlogNest experts.</p>
           </div>
           <div style={{ marginTop: '10px' }}>
             <h3>Life | Work</h3>
-            <p>A series focused on the personal side of Harvard research and teaching.</p>
+            <p>A series focused on the personal side of BlogNest research and teaching.</p>
           </div>
         </div>
           <div

@@ -11,6 +11,7 @@ export const createPost = createAsyncThunk(
         content: data?.postDetail?.description,
         userId: data?.postDetail?.userId,
         image: data?.postDetail?.image,
+        categoryId: data?.postDetail?.categoryId,
       });
       if (response.data.status === 201) {
         return response.data;

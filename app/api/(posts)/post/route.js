@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
   try {
-    const { title, content, userId, image } = await req.json();
+    const { title, content, userId, image, categoryId } = await req.json();
     if (!title || !content || !userId) {
       return NextResponse.json({
         message: "Please fill all the fields",
@@ -18,6 +18,7 @@ export const POST = async (req) => {
         content,
         image: image ?? "/vercel.svg",
         userId,
+        categoryId,
       },
     });
 
