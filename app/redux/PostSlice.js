@@ -27,9 +27,11 @@ export const createPost = createAsyncThunk(
 // Get all posts
 export const getAllPosts = createAsyncThunk(
   "post/getAllPosts",
-  async (data={},thunkAPI) => {
+  async (data = {}, thunkAPI) => {
     try {
-      const response = await axios.get("/api/post" + (data?.categoryId ? `?cid=${data?.categoryId}` : ""));
+      const response = await axios.get(
+        "/api/post" + (data?.categoryId ? `?cid=${data?.categoryId}` : "")
+      );
       if (response.data.status === 200) {
         return response.data;
       } else {
@@ -94,6 +96,7 @@ export const PostSlice = createSlice({
   name: "post",
   initialState: {
     post: {},
+    categoryId: undefined,
     loading: false,
     error: null,
     show: false,
@@ -129,6 +132,7 @@ export const PostSlice = createSlice({
       .addCase(getAllPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.blogs = action.payload;
+        state.categoryId = action.meta.arg?.categoryId ?? undefined;
       })
       .addCase(getAllPosts.rejected, (state, action) => {
         state.loading = false;

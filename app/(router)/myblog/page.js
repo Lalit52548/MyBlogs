@@ -22,6 +22,8 @@ const UserProfile = () => {
   const user = useSelector((state) => state.user.entity.data);
   const loading = useSelector((state) => state.user.loading);
 
+  console.log({ user });
+
   const handleDeleteUser = () => {
     dispatch(deleteUserPost(user.id));
     router.push("/signup");

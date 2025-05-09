@@ -1,5 +1,6 @@
+import { getAllPosts } from "@/app/redux/PostSlice";
 import { useToast } from "@/components/ui/use-toast";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaInstagram,
   FaLinkedin,
@@ -8,34 +9,24 @@ import {
   FaYoutube,
   FaEnvelope,
 } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 
 const Footer = () => {
   const { toast } = useToast();
+  const dispatch = useDispatch();
+  const { categories, loading } = useSelector((state) => state.category);
+  const { categoryId } = useSelector((state) => state.post);
 
-  const handleSMLinkClick = () => {
-    if (sm.fn === "open") {
-      window.open(sm.url, "_blank");
-    }
-    if (sm.fn === "copy") {
-      if (typeof window?.copy === "function") {
-        window.copy(sm.url);
-        toast({
-          description: sm.copyMessage,
-          variant: "default",
-        });
-        return;
-      }
-      if (typeof window.navigator?.clipboard.writeText === "function") {
-        window.navigator.clipboard.writeText(sm.email);
-        toast({
-          description: sm.copyMessage,
-          variant: "default",
-        });
-        return;
-      }
-
-      window.open(sm.url, "_blank");
-    }
+  const handleFilter = (event) => {
+    console.log(
+      "Filter by:",
+      event.target.attributes.itemid?.value ?? undefined
+    );
+    dispatch(
+      getAllPosts({
+        categoryId: event.target.attributes.itemid?.value ?? undefined,
+      })
+    );
   };
 
   return (
@@ -51,20 +42,22 @@ const Footer = () => {
         <div style={{ flex: "1 1 200px", margin: "10px" }}>
           <h2>
             <b>
-              <u>SECTION</u>
+              <u>SECTIONS</u>
             </b>
           </h2>
           <ul>
-            <li>BUSINESS</li>
-            <li>TECHNOLOGY</li>
-            <li>HISTORY</li>
-            <li>LIFSTYLE</li>
-            <li>HEALTH</li>
-            <li>TRAVEL</li>
-            <li>EDUCATION</li>
-            <li>FOOD</li>
-            <li>FINANCE</li>
-            <li>ART</li>
+            {categories.map((category) => (
+              <li
+                key={category.id}
+                itemID={category.id}
+                className={`hover:cursor-pointer ${
+                  categoryId === category.id && "underline"
+                }`}
+                onClick={handleFilter}
+              >
+                {category.name}
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -124,7 +117,34 @@ const Footer = () => {
               <li
                 key={sm.name.toLowerCase()}
                 className="hover:bg-primary/10 px-2 py-1 rounded hover:underline hover:bold"
-                onClick={handleSMLinkClick}
+                onClick={() => {
+                  if (sm.fn === "open") {
+                    window.open(sm.url, "_blank");
+                  }
+                  if (sm.fn === "copy") {
+                    if (typeof window?.copy === "function") {
+                      window.copy(sm.url);
+                      toast({
+                        description: sm.copyMessage,
+                        variant: "default",
+                      });
+                      return;
+                    }
+                    if (
+                      typeof window.navigator?.clipboard.writeText ===
+                      "function"
+                    ) {
+                      window.navigator.clipboard.writeText(sm.email);
+                      toast({
+                        description: sm.copyMessage,
+                        variant: "default",
+                      });
+                      return;
+                    }
+
+                    window.open(sm.url, "_blank");
+                  }
+                }}
                 style={{
                   display: "flex",
                   alignItems: "center",

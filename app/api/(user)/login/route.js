@@ -62,7 +62,20 @@ export const GET = async (req) => {
         name: true,
         email: true,
         createdAt: true,
-        posts: true,
+        posts: {
+          select: {
+            id: true,
+            title: true,
+            createdAt: true,
+            image: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
     if (!user) {

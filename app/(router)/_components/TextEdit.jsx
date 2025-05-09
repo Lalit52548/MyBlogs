@@ -43,6 +43,7 @@ const TextEdit = () => {
   };
 
   const handleImageUpload = (imageData) => {
+    console.log({ imageData })
     if (!imageData.info.secure_url) {
       setImageUploaded(false);
       return;
