@@ -12,7 +12,7 @@ const Footer = () => {
             <li>BUSINESS</li>
             <li>TECHNOLOGY</li>
             <li>HISTORY</li>
-            <li>LIFSTYLE</li>
+            <li>LIFESTYLE</li>
             <li>HEALTH</li>
             <li>TRAVEL</li>
             <li>EDUCATION</li>
