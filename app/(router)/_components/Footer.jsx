@@ -51,7 +51,7 @@ const Footer = () => {
               <li
                 key={category.id}
                 itemID={category.id}
-                classNam3e={`hover:cursor-pointer ${
+                className={`hover:cursor-pointer ${
                   categoryId === category.id && "underline"
                 }`}
                 onClick={handleFilter}
