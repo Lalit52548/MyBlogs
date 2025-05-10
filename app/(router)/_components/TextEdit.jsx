@@ -1,5 +1,5 @@
 "use client";
-import { createPost, hidePost } from "@/app/redux/PostSlice";
+import { createPost, getAllPosts, hidePost } from "@/app/redux/PostSlice";
 import { fetchCategories } from "@/app/redux/CategorySlice";
 import { CldUploadWidget } from "next-cloudinary";
 import { useState, useEffect } from "react";
@@ -68,6 +68,7 @@ const TextEdit = () => {
 
     dispatch(createPost({ postDetail: serializablePostDetail }));
     dispatch(hidePost());
+    dispatch(getAllPosts());
     toast({
       title: "Post created",
       description: "Your post has been created successfully",
@@ -173,6 +174,13 @@ const TextEdit = () => {
           </CldUploadWidget>
         ) : null}
       </div>
+
+      {imageUploaded && (
+        <span className="mx-4 text-white text-sm">
+          Preview of Uploaded Image: <a href={postDetail.image} target="_blank">{postDetail.image}</a>
+        </span>
+      )}
+
 
       <div className="flex w-full mt-4">
         <button
