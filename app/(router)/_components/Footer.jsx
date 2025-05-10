@@ -46,11 +46,12 @@ const Footer = () => {
             </b>
           </h2>
           <ul>
+            {/* Latest Updates for Sections list which works similar */}
             {categories.map((category) => (
               <li
                 key={category.id}
                 itemID={category.id}
-                className={`hover:cursor-pointer ${
+                classNam3e={`hover:cursor-pointer ${
                   categoryId === category.id && "underline"
                 }`}
                 onClick={handleFilter}
@@ -163,6 +164,7 @@ const Footer = () => {
   );
 };
 
+// My Social Media Handles
 const social_media_handle = [
   {
     icon: FaInstagram,
